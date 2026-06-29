@@ -1,0 +1,6 @@
+{
+  "name": "Prisma",
+  "description": "Prisma is a moody, cinematic creative studio portfolio for Battushig.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
