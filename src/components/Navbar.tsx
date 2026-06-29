@@ -5,6 +5,7 @@ export default function Navbar() {
     { label: "Эхлэл", href: "#hero-section" },
     { label: "Миний түүх", href: "#our-story" },
     { label: "Тоглоомууд", href: "#workshops" },
+    { label: "🤖 My Idol", href: "#", action: "idol" },
     { label: "Холбоо барих", href: "#inquiries" }
   ];
 
@@ -26,6 +27,14 @@ export default function Navbar() {
             <li key={idx}>
               <motion.a
                 href={item.href}
+                onClick={(e) => {
+                  if (item.action === "idol") {
+                    e.preventDefault();
+                    if (typeof (window as any).openIdolChat === "function") {
+                      (window as any).openIdolChat();
+                    }
+                  }
+                }}
                 className="text-[10px] sm:text-xs md:text-sm font-medium tracking-wider uppercase transition-colors duration-300 relative group cursor-pointer"
                 style={{ color: linkColor }}
                 whileHover={{ scale: 1.05 }}

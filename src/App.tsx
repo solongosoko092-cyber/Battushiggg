@@ -3,15 +3,27 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { useState, useEffect } from "react";
 import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
 import FeaturesSection from "./components/FeaturesSection";
 import InquirySection from "./components/InquirySection";
+import IdolChatModal from "./components/IdolChatModal";
+import MeChatPopup from "./components/MeChatPopup";
 import { motion } from "motion/react";
 
 export default function App() {
+  const [isIdolOpen, setIsIdolOpen] = useState(false);
+
+  useEffect(() => {
+    (window as any).openIdolChat = () => setIsIdolOpen(true);
+    return () => {
+      delete (window as any).openIdolChat;
+    };
+  }, []);
+
   return (
-    <div className="bg-black text-white selection:bg-primary selection:text-black min-h-screen font-sans antialiased overflow-x-hidden scroll-smooth">
+    <div className="bg-black text-white selection:bg-primary selection:text-black min-h-screen font-sans antialiased overflow-x-hidden scroll-smooth relative">
       {/* SECTION 1: HERO */}
       <HeroSection />
 
@@ -23,6 +35,12 @@ export default function App() {
 
       {/* SECTION 4: INQUIRIES / FOOTER */}
       <InquirySection />
+
+      {/* Floating Chat Popup - Me-AI (Messenger Style) */}
+      <MeChatPopup />
+
+      {/* Idol Coach Chat Modal - Darren Watkins Jr */}
+      <IdolChatModal isOpen={isIdolOpen} onClose={() => setIsIdolOpen(false)} />
 
       {/* Minimalistic Editorial Footer */}
       <footer className="bg-[#0a0a0a] border-t border-white/5 py-12 px-6 text-center text-gray-500 text-xs tracking-wider">
